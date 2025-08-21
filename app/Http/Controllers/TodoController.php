@@ -73,6 +73,10 @@ class TodoController extends Controller
             ]
         );
 
-        return redirect()->route('todo.index');
+        // mengembalikan response berbentuk json ketika selesai karena method ini
+        // digunakan melalui request via javascript
+        return response()->json([
+            'message' => 'Pembaruan berhasil'
+        ]);
     }
 }
