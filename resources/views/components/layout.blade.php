@@ -12,6 +12,7 @@
 
 <body class="mx-10 my-5">
     {{ $slot }}
+@stack('scripts')    
 </body>
 
 
