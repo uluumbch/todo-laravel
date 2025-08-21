@@ -1,5 +1,4 @@
-<div>
-    <li class="flex items-center gap-x-3 border-b-2 border-gray-300 mt-4">
+    <li class="flex items-center gap-x-3  mt-4 border-b last:border-none border-gray-400">
         <div class="">
             <input checked id="red-checkbox" type="checkbox" value=""
                 class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded-full focus:ring-red-500   focus:ring-2 ">
@@ -7,7 +6,7 @@
         <div>
             <h1 class="text-xl font-semibold text-gray-900">{{ $todo->name }}</h1>
             <p>deskripsi</p>
-            <span class="inline-flex gap-x-0.5 @if($todo->is_done) text-red-600 @endif">
+            <span class="inline-flex gap-x-0.5 @if ($todo->is_done) text-red-600 @endif">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,4 +20,3 @@
             </span>
         </div>
     </li>
-</div>
