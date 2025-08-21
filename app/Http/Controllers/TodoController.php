@@ -11,6 +11,8 @@ class TodoController extends Controller
     public function index()
     {
         $todos = Todo::all();
+
+
         return view('daftar-todo')->with([
             'nama' => 'orangs',
             'todos' => $todos
