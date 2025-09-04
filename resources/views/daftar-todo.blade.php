@@ -28,5 +28,35 @@
             </div>
         </form>
     </div>
-    
-</x-layout>
+
+        <!-- Modal for delete confirmation -->
+        <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                <h3 class="text-lg font-semibold mb-4">Konfirmasi Hapus</h3>
+                <p class="mb-6">Apakah Anda yakin ingin menghapus todo ini?</p>
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="flex justify-end gap-x-2">
+                        <button type="button" id="cancelDelete" class="px-4 py-1 rounded-xl bg-white border border-gray-200">Batal</button>
+                        <button type="submit" class="px-4 py-1 rounded-xl bg-red-600 text-white border border-gray-200">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        @push('scripts')
+            
+        <script>
+            // Show modal and set form action
+            function showDeleteModal(actionUrl) {
+                document.getElementById('deleteModal').classList.remove('hidden');
+                document.getElementById('deleteForm').action = actionUrl;
+            }
+            // Hide modal
+            document.getElementById('cancelDelete').onclick = function() {
+                document.getElementById('deleteModal').classList.add('hidden');
+            };
+            </script>
+            @endpush
+    </x-layout>
