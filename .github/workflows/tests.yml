@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-    fail-fast: true
-    matrix:
-      php: [8.4]
+      fail-fast: true
+      matrix:
+        php: [8.4]
 
     name: PHP ${{ matrix.php }}
 
