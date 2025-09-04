@@ -14,13 +14,30 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: true
-      matrix:
-        php: [8.4]
+    fail-fast: true
+    matrix:
+      php: [8.4]
 
     name: PHP ${{ matrix.php }}
 
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_DATABASE: testing
+        ports:
+            - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
+      - name: Verifiy mysql exists
+        run: |
+          mysql --version
+          sudo apt-get install -y mysql-client
+          mysql --host=127.0.0.1 --port={{ job.services.mysql.ports[3306] }} --user=root --password=root --execute="SHOW DATABASES;"
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -42,3 +59,8 @@ jobs:
 
       - name: Execute tests
         run: php artisan test
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          DB_DATABASE: testing
+          DB_USERNAME: root
+          DB_PASSWORD: root
