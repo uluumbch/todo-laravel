@@ -16,4 +16,6 @@ Route::put('/todo/{idTodo}/edit', [TodoController::class, 'update']);
 
 Route::patch('/todo/{idTodo}/done', [TodoController::class, 'updateDone'])->name('todo.complete');
 
+Route::delete('/todo/{idTodo}/delete', [TodoController::class, 'destroy'])->name('todo.destroy');
+
 

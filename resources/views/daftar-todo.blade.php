@@ -21,9 +21,6 @@
                 <input type="search" id="default-search" name="desciprtion"
                     class="block w-full p-4 ps-10 text-sm text-gray-900 rounded-lg bg-white outline-0 "
                     placeholder="opsional deskripsi..." />
-
-                <button type="submit"
-                    class="text-white absolute end-2.5 bottom-2.5 dark:bg-red-500 bg-blue-700  hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ">Tambah</button>
             </div>
             <div class="flex justify-end mt-4 gap-x-2">
                 <button class="px-4 py-1 rounded-xl bg-white border border-gray-200">Batal</button>
