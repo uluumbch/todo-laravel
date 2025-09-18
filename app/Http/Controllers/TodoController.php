@@ -10,7 +10,7 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::all();
+        $todos = auth()->user()->todos;
 
 
         return view('daftar-todo')->with([
@@ -23,10 +23,13 @@ class TodoController extends Controller
     {
         $data = $req->all();
         $name = $data['name'];
+        $description = $data['description'] ?? null;
 
         $todo = Todo::create([
             'name' => $name,
-            'is_done' => false
+            'description' => $description,
+            'is_done' => false,
+            'user_id' => auth()->id()
         ]);
 
         return redirect('/todo');
@@ -39,7 +42,7 @@ class TodoController extends Controller
 
         $todo->delete();
 
-        return redirect('/todo');
+        return response()->json(['message' => 'Todo deleted successfully']);
     }
 
     public function edit($idTodo)
@@ -56,6 +59,7 @@ class TodoController extends Controller
 
         $todo->update([
             'name' => $request->name,
+            'description' => $request->description,
             'is_done' => $request->is_done
         ]);
 
